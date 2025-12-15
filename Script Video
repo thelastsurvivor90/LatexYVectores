@@ -1,0 +1,348 @@
+# 🎥 Script para Video Explicativo - VectorVisualizer
+
+## Duración Estimada: 8-12 minutos
+
+---
+
+## 🎬 INTRODUCCIÓN (0:00 - 1:00)
+
+**[Pantalla: Título "VectorVisualizer"]**
+
+**Narración:**
+"Bienvenidos a VectorVisualizer, un sistema innovador que combina la potencia de Python con la precisión tipográfica de LaTeX para crear visualizaciones profesionales de vectores y espacios vectoriales en 2D y 3D."
+
+**[Transición a pantalla dividida: Python + LaTeX logos]**
+
+"En este video veremos:
+- La arquitectura del sistema
+- Cómo funciona el código Python
+- Las visualizaciones generadas con TikZ y tikz-3dplot
+- Ejemplos prácticos de uso
+- Y demostración en vivo del sistema"
+
+---
+
+## 📚 PARTE 1: FUNDAMENTOS TEÓRICOS (1:00 - 2:30)
+
+**[Mostrar documento PDF generado - sección de vectores 2D]**
+
+**Narración:**
+"Comencemos con los fundamentos. Un vector en el plano R² se representa como un par ordenado de números reales."
+
+**[Zoom en la fórmula matemática del PDF]**
+
+"La aplicación genera automáticamente tanto las fórmulas matemáticas como las visualizaciones gráficas. Observen cómo el vector se descompone en sus componentes x e y."
+
+**[Mostrar la visualización TikZ del vector]**
+
+"La visualización muestra:
+- El vector como una flecha desde el origen
+- Las componentes proyectadas en los ejes
+- Las etiquetas con los valores numéricos
+- Todo renderizado con calidad profesional"
+
+**[Transición a vectores 3D]**
+
+"En el espacio tridimensional, agregamos una tercera componente. El paquete tikz-3dplot nos permite crear representaciones 3D precisas con proyecciones correctas."
+
+---
+
+## 💻 PARTE 2: ARQUITECTURA DEL CÓDIGO (2:30 - 4:30)
+
+**[Mostrar código Python en editor]**
+
+**Narración:**
+"Ahora veamos la arquitectura del sistema. El código está organizado en tres clases principales:"
+
+**[Resaltar clase Vector2D]**
+
+"1. **Vector2D**: Maneja todas las operaciones con vectores en el plano
+   - Suma y resta de vectores
+   - Multiplicación por escalar
+   - Producto punto
+   - Cálculo de magnitud y ángulo
+   - Normalización"
+
+**[Mostrar ejemplo de suma de vectores en el código]**
+
+```python
+def __add__(self, other):
+    return Vector2D(self.x + other.x, self.y + other.y)
+```
+
+"La sobrecarga de operadores hace que el código sea intuitivo y matemáticamente natural."
+
+**[Resaltar clase Vector3D]**
+
+"2. **Vector3D**: Extiende las capacidades al espacio 3D
+   - Todas las operaciones de Vector2D
+   - Producto cruz (fundamental en física y geometría)
+   - Proyecciones tridimensionales"
+
+**[Mostrar producto cruz]**
+
+```python
+def cross(self, other):
+    cx = self.y * other.z - self.z * other.y
+    cy = self.z * other.x - self.x * other.z
+    cz = self.x * other.y - self.y * other.x
+    return Vector3D(cx, cy, cz)
+```
+
+**[Resaltar clase VectorDocument]**
+
+"3. **VectorDocument**: El motor de generación de documentos
+   - Configura el documento LaTeX con todos los paquetes necesarios
+   - Define colores y estilos personalizados
+   - Genera código TikZ optimizado
+   - Compila y produce PDFs profesionales"
+
+---
+
+## 🎨 PARTE 3: VISUALIZACIONES CON TikZ (4:30 - 6:30)
+
+**[Mostrar código de generación TikZ]**
+
+**Narración:**
+"El corazón visual del sistema es la generación de código TikZ. Veamos un ejemplo:"
+
+**[Mostrar método add_vector_2d]**
+
+"Este método genera código TikZ dinámicamente:
+- Calcula la escala apropiada según la magnitud del vector
+- Dibuja los ejes coordenados
+- Crea una cuadrícula de referencia
+- Renderiza el vector con grosor y color especificados
+- Añade las proyecciones punteadas
+- Coloca las etiquetas matemáticas"
+
+**[Mostrar PDF generado lado a lado con código TikZ]**
+
+"El resultado es una figura vectorial perfecta, escalable a cualquier tamaño sin pérdida de calidad."
+
+**[Transición a visualización 3D]**
+
+"Para vectores 3D, utilizamos tikz-3dplot que permite configurar la perspectiva de visualización:"
+
+**[Mostrar código 3D]**
+
+```latex
+\tdplotsetmaincoords{65}{115}
+\begin{tikzpicture}[tdplot_main_coords]
+```
+
+"Los ángulos 65° y 115° definen la orientación óptima para visualizar el espacio tridimensional."
+
+**[Mostrar varias visualizaciones 3D rotando]**
+
+"Esto nos permite crear representaciones claras de:
+- Vectores individuales en 3D
+- Productos cruz mostrando perpendicularidad
+- Planos formados por pares de vectores"
+
+---
+
+## 🚀 PARTE 4: DEMOSTRACIÓN EN VIVO (6:30 - 9:00)
+
+**[Pantalla: Terminal de comandos]**
+
+**Narración:**
+"Ahora veamos el sistema en acción. Ejecutemos el script principal."
+
+**[Escribir en terminal]**
+```bash
+python vector_visualizer.py
+```
+
+**[Mostrar menú de opciones]**
+
+"El sistema nos presenta un menú interactivo con diferentes ejemplos. Seleccionemos la opción 4 para generar todos los ejemplos."
+
+**[Seleccionar opción 4]**
+
+**[Mostrar progreso de generación]**
+
+"Observen cómo el sistema:
+1. Crea los objetos Vector2D y Vector3D
+2. Construye el documento LaTeX
+3. Genera el código TikZ para cada visualización
+4. Compila el documento con pdflatex
+5. Guarda tanto el PDF como el código fuente .tex"
+
+**[Mostrar carpeta output con archivos generados]**
+
+"Los archivos se guardan en la carpeta 'output' con nombres descriptivos."
+
+**[Abrir PDF generado]**
+
+"Y aquí está el resultado: un documento PDF profesional con tabla de contenidos, secciones organizadas, fórmulas matemáticas perfectamente renderizadas y visualizaciones de alta calidad."
+
+**[Navegar por el PDF mostrando diferentes secciones]**
+
+"Podemos ver:
+- Vectores individuales en 2D con sus componentes
+- Operaciones de suma visualizadas con el método del paralelogramo
+- Vectores en 3D con proyecciones correctas
+- Productos cruz mostrando la perpendicularidad
+- Aplicaciones prácticas como fuerzas en física"
+
+---
+
+## 🎯 PARTE 5: APLICACIONES PRÁCTICAS (9:00 - 10:30)
+
+**[Mostrar ejemplos de aplicación]**
+
+**Narración:**
+"Este sistema tiene múltiples aplicaciones educativas y profesionales:"
+
+**[Mostrar ejemplo de física]**
+
+"**En Física:**
+- Descomposición de fuerzas
+- Análisis de movimiento vectorial
+- Campos eléctricos y magnéticos
+- Momento angular"
+
+**[Mostrar ejemplo de ingeniería]**
+
+"**En Ingeniería:**
+- Análisis estructural
+- Mecánica de materiales
+- Diseño de mecanismos
+- Robótica"
+
+**[Mostrar ejemplo de computación gráfica]**
+
+"**En Computación Gráfica:**
+- Transformaciones 3D
+- Cálculo de normales
+- Iluminación y sombreado
+- Detección de colisiones"
+
+**[Mostrar ejemplo educativo]**
+
+"**En Educación:**
+- Material didáctico de alta calidad
+- Visualizaciones claras para estudiantes
+- Ejercicios con soluciones visuales
+- Recursos reproducibles"
+
+---
+
+## 🔧 PARTE 6: PERSONALIZACIÓN Y EXTENSIÓN (10:30 - 11:30)
+
+**[Mostrar código de personalización]**
+
+**Narración:**
+"El sistema es altamente personalizable. Por ejemplo, podemos modificar los colores:"
+
+```python
+\definecolor{vec1}{RGB}{220,50,50}  # Rojo
+\definecolor{vec2}{RGB}{50,120,220} # Azul
+\definecolor{vec3}{RGB}{50,180,100} # Verde
+```
+
+**[Mostrar diferentes esquemas de color]**
+
+"También podemos ajustar los estilos de visualización:"
+
+```python
+# Cambiar grosor de líneas
+line width=1.5pt
+
+# Modificar estilos de flecha
+arrows.meta
+
+# Personalizar cuadrículas
+step=1,gray,very thin,opacity=0.3
+```
+
+**[Mostrar extensión con nuevas operaciones]**
+
+"Para agregar nuevas operaciones, simplemente extendemos las clases base:"
+
+```python
+def angle_between(self, other):
+    """Ángulo entre dos vectores"""
+    cos_theta = self.dot(other) / (self.magnitude() * other.magnitude())
+    return np.arccos(cos_theta)
+```
+
+---
+
+## 📝 PARTE 7: PROYECTO OVERLEAF (11:30 - 12:00)
+
+**[Mostrar Overleaf en navegador]**
+
+**Narración:**
+"Para facilitar la colaboración, todo el código LaTeX generado es compatible con Overleaf."
+
+**[Navegar por proyecto Overleaf]**
+
+"Pueden copiar el contenido del archivo .tex generado directamente a Overleaf y:
+- Editar las visualizaciones manualmente si lo desean
+- Agregar más contenido educativo
+- Compartir con colaboradores
+- Compilar en línea sin instalar LaTeX localmente"
+
+**[Mostrar compilación en Overleaf]**
+
+"La compilación funciona perfectamente porque todos los paquetes utilizados están disponibles en Overleaf."
+
+---
+
+## 🎓 CONCLUSIÓN (12:00 - 13:00)
+
+**[Pantalla: Resumen visual con ejemplos]**
+
+**Narración:**
+"En resumen, VectorVisualizer demuestra el poder de combinar Python con LaTeX para crear herramientas educativas de calidad profesional."
+
+**[Mostrar puntos clave]**
+
+"**Ventajas clave:**
+✓ Automatización completa de visualizaciones
+✓ Calidad tipográfica profesional
+✓ Código modular y extensible
+✓ Compatible con Overleaf
+✓ Aplicable a múltiples disciplinas
+✓ Código fuente abierto y modificable"
+
+**[Mostrar repositorio o recursos]**
+
+"Todo el código está disponible y puede ser adaptado según sus necesidades específicas."
+
+**[Pantalla final con contacto/créditos]**
+
+"Gracias por ver este video. Espero que VectorVisualizer les sea útil en sus proyectos educativos o profesionales."
+
+"No olviden experimentar con diferentes configuraciones y compartir sus resultados. ¡Hasta la próxima!"
+
+---
+
+## 📌 NOTAS DE PRODUCCIÓN
+
+### Elementos Visuales Necesarios:
+- ✅ Screen recording del código en VSCode/editor
+- ✅ PDFs generados mostrados en pantalla completa
+- ✅ Terminal con ejecución del script
+- ✅ Navegador con Overleaf
+- ✅ Transiciones suaves entre secciones
+- ✅ Zoom en código relevante
+- ✅ Highlights de código con anotaciones
+
+### Audio:
+- ✅ Voz clara y profesional
+- ✅ Música de fondo sutil (opcional)
+- ✅ Efectos de sonido para transiciones
+
+### Ritmo:
+- ⏱️ No más de 20 segundos por diapositiva
+- ⏱️ Pausas breves entre secciones
+- ⏱️ Demostraciones en tiempo real editadas para fluidez
+
+### Recursos Adicionales a Mostrar:
+- Documentación de PyLaTeX
+- Manual de TikZ
+- Ejemplos de tikz-3dplot
+- Repositorio del código (GitHub/GitLab)
