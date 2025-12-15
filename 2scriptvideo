@@ -1,0 +1,461 @@
+# 🎥 Guión para Video Explicativo - VectorSpace3D
+
+## Duración Total: ~30-35 minutos
+
+---
+
+## 🎬 INTRODUCCIÓN (0:00 - 2:30)
+
+### Toma 1: Título y Hook (0:00 - 0:30)
+
+**Visual**: 
+- Logo VectorSpace3D animado
+- Ejemplos de gráficos 2D y 3D generados
+
+**Narración**:
+> "Hola! En este video te voy a mostrar VectorSpace3D, un sistema innovador que combina Python con LaTeX para crear visualizaciones matemáticas profesionales de vectores y espacios vectoriales."
+
+> "Si alguna vez has necesitado crear documentos matemáticos con gráficos de alta calidad, o si estás estudiando álgebra lineal y quieres visualizar conceptos abstractos, este proyecto es para ti."
+
+### Toma 2: Problemática (0:30 - 1:30)
+
+**Visual**: 
+- Capturas de herramientas tradicionales (matplotlib, etc.)
+- Comparación de calidad gráfica
+
+**Narración**:
+> "El problema con las herramientas tradicionales es que o bien generan gráficos que no se integran bien con LaTeX, o requieren código manual extenso para cada visualización."
+
+> "VectorSpace3D soluciona esto automatizando completamente la generación de código TikZ y tikz-3dplot de alta calidad, manteniendo la elegancia matemática de LaTeX."
+
+### Toma 3: Overview del Proyecto (1:30 - 2:30)
+
+**Visual**: 
+- Diagrama de arquitectura
+- Flujo: Python → LaTeX → PDF
+
+**Narración**:
+> "Vamos a cubrir: la investigación sobre TikZ y tikz-3dplot, la arquitectura del sistema, ejemplos prácticos en 2D y 3D, operaciones vectoriales avanzadas, y cómo usar el proyecto en Overleaf."
+
+---
+
+## 📚 INVESTIGACIÓN: TikZ y tikz-3dplot (2:30 - 5:00)
+
+### Toma 4: ¿Qué es TikZ? (2:30 - 3:30)
+
+**Visual**: 
+- Código TikZ simple
+- Resultado compilado
+- Ejemplos del manual TikZ
+
+**Narración**:
+> "TikZ es un poderoso sistema para crear gráficos vectoriales en LaTeX. Su nombre, 'TikZ ist kein Zeichenprogramm', significa 'TikZ no es un programa de dibujo', aunque ironicamente es exactamente eso."
+
+> "Lo especial de TikZ es su precisión matemática y su perfecta integración con el sistema de ecuaciones de LaTeX."
+
+**Mostrar código**:
+```latex
+\begin{tikzpicture}
+  \draw[->] (0,0) -- (3,2) node[above] {$\vec{v}$};
+\end{tikzpicture}
+```
+
+### Toma 5: tikz-3dplot para 3D (3:30 - 5:00)
+
+**Visual**: 
+- Demostración de gráfico 3D rotando
+- Diferentes ángulos de vista
+- Sistema de coordenadas 3D
+
+**Narración**:
+> "tikz-3dplot extiende TikZ para gráficos tridimensionales. Permite definir ángulos de vista, trabajar con coordenadas esféricas, y crear proyecciones realistas."
+
+> "El comando clave es tdplotsetmaincoords que configura los ángulos theta y phi para la visualización."
+
+**Mostrar código**:
+```latex
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[tdplot_main_coords]
+  \draw[->] (0,0,0) -- (2,3,1);
+\end{tikzpicture}
+```
+
+---
+
+## 💻 INSTALACIÓN Y CONFIGURACIÓN (5:00 - 8:00)
+
+### Toma 6: Requisitos (5:00 - 6:00)
+
+**Visual**: 
+- Terminal mostrando versiones
+- Logos de Python y LaTeX
+
+**Narración**:
+> "Para usar VectorSpace3D necesitas Python 3.8 o superior y una distribución completa de LaTeX. En Linux, Ubuntu o Debian, instala texlive-full. En macOS, MacTeX. Y en Windows, MiKTeX."
+
+**Mostrar terminal**:
+```bash
+python --version
+pdflatex --version
+```
+
+### Toma 7: Instalación de Dependencias (6:00 - 7:00)
+
+**Visual**: 
+- Terminal ejecutando comandos pip
+- Estructura de archivos del proyecto
+
+**Narración**:
+> "Clonamos el repositorio, creamos un entorno virtual opcional, e instalamos las dependencias con pip."
+
+**Ejecutar en terminal**:
+```bash
+git clone https://github.com/usuario/vectorspace3d.git
+cd vectorspace3d
+python -m venv venv
+source venv/bin/activate
+pip install numpy pylatex
+```
+
+### Toma 8: Verificación (7:00 - 8:00)
+
+**Visual**: 
+- Python importando módulos
+- Verificación de paquetes LaTeX
+
+**Narración**:
+> "Verificamos que todo funciona correctamente importando los módulos y comprobando que LaTeX tiene los paquetes necesarios."
+
+**Mostrar código Python**:
+```python
+import numpy as np
+from pylatex import Document
+from vectorspace3d_main import VectorSpace3D
+print("✓ Todo listo!")
+```
+
+---
+
+## 🎨 EJEMPLOS BÁSICOS 2D (8:00 - 12:00)
+
+### Toma 9: Primer Vector 2D (8:00 - 9:30)
+
+**Visual**: 
+- Editor de código
+- Ejecución del script
+- PDF generado
+
+**Narración**:
+> "Empecemos con algo simple: visualizar vectores en el plano. Creamos una instancia de VectorSpace3D, definimos nuestros vectores como tuplas, y llamamos a add_vector_2d."
+
+**Código en vivo**:
+```python
+from vectorspace3d_main import VectorSpace3D
+
+vs = VectorSpace3D("Mi Primer Análisis")
+vectors = [(3, 2), (-1, 4), (2, -3)]
+vs.add_vector_2d(vectors, labels=['u', 'v', 'w'])
+vs.generate('ejemplo_2d')
+```
+
+### Toma 10: Análisis del Resultado (9:30 - 11:00)
+
+**Visual**: 
+- PDF abierto mostrando gráfico
+- Zoom en detalles: flechas, etiquetas, colores
+- Código LaTeX generado
+
+**Narración**:
+> "El sistema genera automáticamente código TikZ de alta calidad. Observen las flechas con el estilo Stealth, los colores diferenciados, el grid de referencia, y las etiquetas con notación matemática."
+
+> "Cada vector tiene su magnitud calculada automáticamente y se muestra con la notación correcta."
+
+### Toma 11: Personalización (11:00 - 12:00)
+
+**Visual**: 
+- Modificando parámetros
+- Comparación de diferentes estilos
+
+**Narración**:
+> "Podemos personalizar colores, mostrar u ocultar el grid, cambiar las etiquetas, todo de forma programática."
+
+**Código**:
+```python
+vs.add_vector_2d(
+    vectors, 
+    labels=['u', 'v', 'w'],
+    colors=['blue!80', 'red!70', 'green!90'],
+    show_grid=True
+)
+```
+
+---
+
+## 🌟 VISUALIZACIÓN 3D (12:00 - 17:00)
+
+### Toma 12: Vectores en 3D (12:00 - 13:30)
+
+**Visual**: 
+- Código creando vectores 3D
+- Compilación en tiempo real
+- Resultado 3D
+
+**Narración**:
+> "Ahora pasemos a tres dimensiones. El proceso es similar, pero usamos add_vector_3d y proporcionamos tuplas de tres elementos."
+
+**Código**:
+```python
+vectors_3d = [(2, 3, 1), (1, -1, 2), (-2, 1, 3)]
+vs.add_vector_3d(
+    vectors_3d, 
+    labels=['a', 'b', 'c'],
+    view_angle=(70, 120)
+)
+```
+
+### Toma 13: Ángulos de Vista (13:30 - 15:00)
+
+**Visual**: 
+- Diferentes vistas del mismo vector
+- Diagrama explicando theta y phi
+- Comparación de ángulos
+
+**Narración**:
+> "El parámetro view_angle controla la perspectiva. El primer valor es theta, la elevación, y el segundo es phi, la rotación azimutal."
+
+> "Experimenten con diferentes ángulos para encontrar la mejor vista para sus vectores."
+
+**Mostrar ejemplos**:
+```python
+view_angle=(0, 0)      # Vista frontal
+view_angle=(90, 0)     # Vista superior
+view_angle=(70, 120)   # Vista isométrica
+```
+
+### Toma 14: Proyecciones y Referencias (15:00 - 17:00)
+
+**Visual**: 
+- Zoom en proyecciones al plano XY
+- Líneas punteadas de referencia
+- Planos de fondo
+
+**Narración**:
+> "El sistema añade automáticamente ayudas visuales: proyecciones al plano XY con líneas punteadas, un plano de referencia semitransparente, y puntos en los extremos de los vectores."
+
+> "Estos detalles hacen que sea más fácil interpretar la geometría tridimensional."
+
+---
+
+## 🔢 OPERACIONES VECTORIALES (17:00 - 22:00)
+
+### Toma 15: Suma de Vectores (17:00 - 18:30)
+
+**Visual**: 
+- Animación conceptual de suma
+- Código ejecutándose
+- Resultado mostrando u, v, y u+v
+
+**Narración**:
+> "Las operaciones vectoriales son fundamentales. Empecemos con la suma. La función add_vector_operations calcula automáticamente u + v y lo visualiza junto con los vectores originales."
+
+**Código**:
+```python
+vs.add_vector_operations(
+    v1=(3, 4, 2), 
+    v2=(1, -2, 5),
+    label1='u', 
+    label2='v'
+)
+```
+
+### Toma 16: Producto Escalar (18:30 - 20:00)
+
+**Visual**: 
+- Fórmula del producto escalar
+- Cálculo del ángulo
+- Interpretación geométrica
+
+**Narración**:
+> "El producto escalar nos da información sobre el ángulo entre vectores. El sistema calcula u punto v, y automáticamente determina el ángulo en grados."
+
+> "Un producto escalar positivo indica vectores que apuntan en direcciones similares, negativo significa direcciones opuestas, y cero significa vectores perpendiculares."
+
+### Toma 17: Producto Cruz (20:00 - 22:00)
+
+**Visual**: 
+- Regla de la mano derecha
+- Vectores u, v, y u×v perpendicular
+- Visualización 3D del resultado
+
+**Narración**:
+> "El producto cruz es exclusivo de tres dimensiones. Produce un vector perpendicular a ambos vectores originales."
+
+> "La magnitud del producto cruz es el área del paralelogramo formado por los vectores, y su dirección sigue la regla de la mano derecha."
+
+---
+
+## 🎓 FUNCIONES AVANZADAS (22:00 - 27:00)
+
+### Toma 18: Análisis de Bases (22:00 - 23:30)
+
+**Visual**: 
+- Definición matemática de base
+- Código analizando independencia lineal
+- Cálculo de determinante
+
+**Narración**:
+> "El módulo avanzado incluye análisis de bases. Podemos verificar si un conjunto de vectores es linealmente independiente calculando el determinante."
+
+**Código**:
+```python
+from vectorspace_advanced import AdvancedVectorSpace
+
+avs = AdvancedVectorSpace("Análisis Avanzado")
+basis = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+avs.add_vector_space_basis(basis)
+```
+
+### Toma 19: Gram-Schmidt (23:30 - 25:00)
+
+**Visual**: 
+- Proceso paso a paso
+- Vectores antes y después
+- Base ortonormal resultante
+
+**Narración**:
+> "La ortogonalización de Gram-Schmidt transforma cualquier base en una base ortonormal. El sistema muestra cada paso del proceso y visualiza el resultado."
+
+**Código**:
+```python
+vectors = [[3, 1, 0], [2, 2, 1]]
+avs.add_gram_schmidt(vectors)
+```
+
+### Toma 20: Eigenanálisis (25:00 - 27:00)
+
+**Visual**: 
+- Matriz de transformación
+- Eigenvalores calculados
+- Eigenvectores visualizados
+
+**Narración**:
+> "Para matrices, podemos calcular y visualizar eigenvalores y eigenvectores. Estos son fundamentales en muchas aplicaciones, desde la compresión de datos hasta la física cuántica."
+
+**Código**:
+```python
+matrix = [[2, 1], [1, 2]]
+avs.add_eigenanalysis(matrix)
+```
+
+---
+
+## 🌐 INTEGRACIÓN CON OVERLEAF (27:00 - 30:00)
+
+### Toma 21: Subir a Overleaf (27:00 - 28:00)
+
+**Visual**: 
+- Navegando a Overleaf.com
+- Subiendo archivo .tex
+- Compilando en línea
+
+**Narración**:
+> "Para colaborar o compilar en la nube, podemos usar Overleaf. Simplemente generamos el archivo .tex con nuestro script y lo subimos a un nuevo proyecto en Overleaf."
+
+### Toma 22: Template Overleaf (28:00 - 29:00)
+
+**Visual**: 
+- Template público en Overleaf
+- Copiando proyecto
+- Modificando parámetros
+
+**Narración**:
+> "También he creado un template público en Overleaf que pueden copiar y modificar directamente. Incluye ejemplos de todas las funcionalidades."
+
+### Toma 23: Flujo de Trabajo (29:00 - 30:00)
+
+**Visual**: 
+- Diagrama de flujo
+- Ejemplo de ciclo completo
+
+**Narración**:
+> "El flujo típico es: escribir código Python localmente, generar el .tex, revisarlo si es necesario, y luego compilar localmente o subirlo a Overleaf para colaborar."
+
+---
+
+## 🎬 CONCLUSIÓN (30:00 - 32:00)
+
+### Toma 24: Recapitulación (30:00 - 31:00)
+
+**Visual**: 
+- Montaje de todos los ejemplos
+- Highlights de características
+
+**Narración**:
+> "Recapitulando: VectorSpace3D automatiza la creación de visualizaciones matemáticas profesionales combinando Python con TikZ y tikz-3dplot."
+
+> "Incluye funciones desde lo básico como vectores 2D hasta lo avanzado como eigenanálisis, todo con documentación automática."
+
+### Toma 25: Recursos y Cierre (31:00 - 32:00)
+
+**Visual**: 
+- Links en pantalla
+- Código QR a GitHub
+- Suscribirse/Like
+
+**Narración**:
+> "Todos los códigos están en GitHub. El README tiene instrucciones completas, y la documentación cubre cada función en detalle."
+
+> "Si este proyecto te fue útil, dale una estrella en GitHub, comparte el video, y déjame saber en los comentarios qué otras funcionalidades te gustaría ver."
+
+> "Gracias por ver, y happy coding!"
+
+---
+
+## 📋 CHECKLIST POST-PRODUCCIÓN
+
+### Edición:
+- [ ] Agregar overlay con código en momentos clave
+- [ ] Transiciones suaves entre secciones
+- [ ] Música de fondo sutil
+- [ ] Gráficos explicativos para conceptos matemáticos
+
+### Anotaciones:
+- [ ] Links a GitHub en descripción
+- [ ] Timestamps de cada sección
+- [ ] Links a recursos mencionados
+- [ ] Cards a videos relacionados
+
+### Miniaturas:
+- [ ] Crear thumbnail llamativo
+- [ ] Incluir texto: "Python + LaTeX = 🔥"
+- [ ] Mostrar ejemplo de gráfico 3D
+
+### Descripción del Video:
+```
+🎯 VectorSpace3D: Sistema de Visualización de Vectores
+
+Aprende a crear documentos matemáticos profesionales combinando 
+Python con LaTeX (TikZ y tikz-3dplot).
+
+⏱️ TIMESTAMPS:
+0:00 - Introducción
+2:30 - TikZ y tikz-3dplot
+5:00 - Instalación
+8:00 - Ejemplos 2D
+12:00 - Visualización 3D
+17:00 - Operaciones Vectoriales
+22:00 - Funciones Avanzadas
+27:00 - Overleaf Integration
+30:00 - Conclusión
+
+🔗 RECURSOS:
+📦 GitHub: [link]
+📄 Documentación: [link]
+🌐 Template Overleaf: [link]
+💬 Discord: [link]
+
+#Python #LaTeX #Mathematics #DataVisualization #LinearAlgebra
+```
+
+---
+
