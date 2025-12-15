@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 VectorVisualizer - Sistema de Visualización de Vectores con PyLaTeX
-Autor: Sistema Educativo Avanzado
+Autor: Deyvi Samuel Barrera
 Versión: 1.0
 """
 
@@ -539,3 +539,4 @@ if __name__ == "__main__":
     print("Proceso completado!")
     print("Los archivos PDF se encuentran en la carpeta 'output/'")
     print("=" * 60)
+    

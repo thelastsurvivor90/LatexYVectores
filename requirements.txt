@@ -1,0 +1,22 @@
+# VectorVisualizer - Dependencias del Proyecto
+# Python 3.8+
+
+# Generación de documentos LaTeX desde Python
+pylatex>=1.4.1
+
+# Operaciones numéricas y matemáticas
+numpy>=1.21.0
+
+# Opcional: Para procesamiento adicional
+matplotlib>=3.5.0
+
+# Nota: Este proyecto también requiere una distribución LaTeX instalada
+# en el sistema (TeX Live, MiKTeX, etc.) con los siguientes paquetes:
+# - tikz
+# - tikz-3dplot
+# - babel
+# - inputenc
+# - amsmath
+# - amssymb
+# - xcolor
+# - geometry
